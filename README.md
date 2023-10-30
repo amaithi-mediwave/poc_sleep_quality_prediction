@@ -1,4 +1,4 @@
-# Insonia Prediction
+# Insomnia Prediction
 
 Install dependencies
 
@@ -57,9 +57,5 @@ https://www.mlflow.org/docs/latest/model-registry.html#model-registry-workflows
 
 
 
-
-## Author
-
-- [@amaithi-sam](https://www.github.com/amaithi-sam)
 
 
