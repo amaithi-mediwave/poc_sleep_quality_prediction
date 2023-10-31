@@ -15,24 +15,26 @@ def feature_engineering(config_path):
     df = get_data_frame(config_path)
     
     # filling the missing values in Sleep Disorder
-    df['Sleep Disorder'].fillna('Normal', inplace=True)
+    df['sleep_disorder'].fillna('Normal', inplace=True)
     
     # drop the un wanted values in BP
-    df.drop(df[df['Blood Pressure'] == '_RARE_'].index, inplace=True)
+    df.drop(df[df['blood_pressure'] == '_RARE_'].index, inplace=True)
     
-    # One-Hot for GENDER Variable
-    df = pd.get_dummies(df, columns=['Gender'], dtype=int, drop_first=True)
+    #  GENDER Variable
+    df = df.replace({'gender': {'Male': 1, 'Female' : 0}})
+    # df = pd.get_dummies(df, columns=['Gender'], dtype=int, drop_first=True)
     
-    # One-Hot for BMI Category Variable
-    df = pd.get_dummies(df, columns=['BMI Category'], dtype=int, drop_first=True)
+    # BMI Category Variable
+    df = df.replace({'bmi_category': {'Normal': 0, 'Normal Weight' : 1, 'Overweight' : 2, 'Obese' :3}})
+    # df = pd.get_dummies(df, columns=['BMI Category'], dtype=int, drop_first=True)
     
     # Encoding the Target Variable
-    le = LabelEncoder()
-    df['Sleep Disorder'] = le.fit_transform(df['Sleep Disorder'])
+    # le = LabelEncoder()
+    # df['sleep_disorder'] = le.fit_transform(df['Sleep Disorder'])
     
     # Handling the BP Variable
-    df[['Systolic', 'Diastolic']] = df['Blood Pressure'].str.split('/', expand=True).astype(int)
-    df.drop(columns=['Blood Pressure'], inplace=True)
+    df[['systolic', 'diastolic']] = df['blood_pressure'].str.split('/', expand=True).astype(int)
+    df.drop(columns=['blood_pressure'], inplace=True)
     
     data_path = config['data_source']['local_data_source']['pre_processed_data']
     

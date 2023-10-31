@@ -54,7 +54,7 @@ https://www.mlflow.org/docs/latest/model-registry.html#model-registry-workflows
 
 
 
-
+Streamlet : streamlit run app.py
 
 
 

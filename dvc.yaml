@@ -1,0 +1,11 @@
+stages:
+  dvc_pipeline(Insomnia Classifier):
+
+    cmd:
+      - python3 src/featureEngineering.py --config=params.yaml
+      - python3 src/trainAndEval.py --config=params.yaml
+      - python3 src/mlFlowLog.py --config=params.yaml
+
+    deps:
+      - src/featureEngineering.py
+

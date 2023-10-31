@@ -1,0 +1,12 @@
+schema: '2.0'
+stages:
+  dvc_pipeline(Insomnia Classifier):
+    cmd:
+    - python3 src/featureEngineering.py --config=params.yaml
+    - python3 src/trainAndEval.py --config=params.yaml
+    - python3 src/mlFlowLog.py --config=params.yaml
+    deps:
+    - path: src/featureEngineering.py
+      hash: md5
+      md5: ed0d9b719b450251a43c31011e9eb483
+      size: 1576

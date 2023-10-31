@@ -1,1 +1,15 @@
 notebooks/.ipynb_checkpoints
+.dvc
+.vscode
+artifacts
+
+notebooks/dataset_preprocessed.csv
+notebooks/reference.csv
+notebooks/X_data.csv
+notebooks/y_data.csv
+predictionService/__pycache__
+predictionService/production_model.pkl
+src/__pycache__
+for_streamlit_y.csv
+for_streamlit.csv
+rough.ipynb
