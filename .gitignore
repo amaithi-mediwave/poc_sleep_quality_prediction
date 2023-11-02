@@ -13,3 +13,10 @@ src/__pycache__
 for_streamlit_y.csv
 for_streamlit.csv
 rough.ipynb
+confusion_matrix.png
+mlflow.db
+ROC_Curves.png
+notebooks/dataset_preprocessed.csv
+data/poc_sleep_synthetic_dataset.csv
+data/preprocessed_data.csv
+/home/trainee/Documents/Usecase/POC/data/Sleep_health_and_lifestyle_dataset.csv

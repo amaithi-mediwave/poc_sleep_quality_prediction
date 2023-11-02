@@ -1,6 +1,4 @@
 import joblib
-import json 
-import os 
 import argparse
 import pandas as pd 
 from src.getData import read_params
@@ -9,7 +7,6 @@ from src.getData import read_params
 
 import warnings
 warnings.filterwarnings('ignore')
-
 
 
 
@@ -23,16 +20,10 @@ def predictor(df):
     
         df = df.replace({'bmi_category': {'Normal': 0, 'Normal Weight' : 1, 'Overweight' : 2, 'Obese' :3}})
 
-        # data = pd.DataFrame(df, columns=df.keys(), index=[0]).copy()
-
-        # data_for_pred =  _transformer(data, config)
-
         prod_model = joblib.load(prod_model_path)
 
         pred = prod_model.predict(df)
 
-        # val = round(pred.tolist()[0], 2)
-        
         return pred
 
         
