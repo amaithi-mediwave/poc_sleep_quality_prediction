@@ -17,12 +17,15 @@ import json
 
 import mlflow
 from urllib.parse import urlparse
+from pathlib import Path
+cwd = Path.cwd()
 
 from modelTrainingAndHyperTuning import hyperparameter_tuning
 
 dt_now = dt.now()
 experi_time = dt_now.strftime("%m/%d/%Y")
 run_time = dt_now.strftime("%m/%d/%Y, %H:%M:%S")
+
 
 # -------------------PREDICTION METRICS---------------------------
 
@@ -37,7 +40,7 @@ def predict_prob(model, X_test):
     return proba
 
 
-def get_metrics(y_true, y_pred, y_probas):
+def get_metrics(y_true, y_pred, y_probas, roc_path, confusion_path ):
     from sklearn.metrics import (
         accuracy_score,
         confusion_matrix,
@@ -53,11 +56,11 @@ def get_metrics(y_true, y_pred, y_probas):
     prec = precision_score(y_true, y_pred, average="micro")
     recall = recall_score(y_true, y_pred, average="micro")
     ConfusionMatrixDisplay.from_predictions(y_true, y_pred)
-    plt.savefig('confusion_matrix.png')
+    plt.savefig(confusion_path)
     # cm_dis.figure_.savefig('confusion_matrix.png')
     
     skplt.metrics.plot_roc(y_true, y_probas)
-    plt.savefig('ROC_Curves.png')
+    plt.savefig(roc_path)
     
     return {
         "Accuracy": round(acc_score, 3),
@@ -77,7 +80,8 @@ def train_and_evaluate(config_path):
     ]
     test_size = config["base"]["test_size"]
     # model_dir = config["model_dir"]
-
+    confusion_matrix_path = config["metrics_path"]["confusion_mat"]
+    roc_auc_path = config["metrics_path"]["roc_auc"]
     
     random_seed = config["base"]["random_seed"]
 
@@ -126,7 +130,7 @@ def train_and_evaluate(config_path):
 
         y_pred = predict_on_test_data(model_tuned, X_test)
         y_probas = predict_prob(model_tuned, X_test)
-        metrics = get_metrics(y_test, y_pred, y_probas)
+        metrics = get_metrics(y_test, y_pred, y_probas, roc_auc_path, confusion_matrix_path)
 
 
         # {'accuracy': round(acc, 2), 'precision': round(prec, 2), 'recall': round(recall, 2), 'entropy': round(entropy, 2)}

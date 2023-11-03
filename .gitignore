@@ -2,13 +2,13 @@ notebooks/.ipynb_checkpoints
 .dvc
 .vscode
 artifacts
-
+.pytest_cache
 notebooks/dataset_preprocessed.csv
 notebooks/reference.csv
 notebooks/X_data.csv
 notebooks/y_data.csv
 predictionService/__pycache__
-predictionService/production_model.pkl
+# predictionService/production_model.pkl
 src/__pycache__
 for_streamlit_y.csv
 for_streamlit.csv
@@ -20,3 +20,8 @@ notebooks/dataset_preprocessed.csv
 data/poc_sleep_synthetic_dataset.csv
 data/preprocessed_data.csv
 /home/trainee/Documents/Usecase/POC/data/Sleep_health_and_lifestyle_dataset.csv
+notebooks/.ipynb_checkpoints
+predictionService/__pycache__
+tests/__pycache__
+.tox
+notebooks/schema_in.json

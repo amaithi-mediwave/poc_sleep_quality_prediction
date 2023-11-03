@@ -10,8 +10,8 @@ data_source:
     data_sample: 500
 
 metrics_path: 
-  roc_auc : ROC_Curves.png
-  confusion_mat : confusion_matrix.png
+  roc_auc : src/ROC_Curves.png
+  confusion_mat : src/confusion_matrix.png
 
 
 ml_flow_config:

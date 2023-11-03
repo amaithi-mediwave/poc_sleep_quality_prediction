@@ -29,10 +29,10 @@ def predictor(df):
         
 
     except Exception as e:
-        print(e)
+        # print(e)
         # error ={"error": "Something went wrong try again"}
-        error = {"error": e}
-        return f"Try Again"
+        # error = {"error": e}
+        return f"{type(e).__name__}"
 
 
 

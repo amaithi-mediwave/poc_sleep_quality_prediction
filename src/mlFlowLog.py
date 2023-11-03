@@ -17,16 +17,18 @@ def log_production_model(config_path):
     mlflow.set_tracking_uri(remote_server_uri)
 
     runs = mlflow.search_runs(search_all_experiments=True) # it will return a dataframe
+    
     # runs.to_csv('runs.csv')
-    lowest = runs["metrics.Accuracy"].sort_values(ascending=False)[0]
-    lowest_run_id = runs[runs["metrics.Accuracy"] == lowest]["run_id"][0]
+    
+    high_accuracy = runs["metrics.Accuracy"].sort_values(ascending=False).iloc[0]
+    high_accuracy_run_id = runs[runs["metrics.Accuracy"] == high_accuracy]["run_id"].iloc[0]
 
     client = MlflowClient()
     
     for mv in client.search_model_versions(f"name='{model_name}'"):
         mv = dict(mv)
         
-        if mv["run_id"] == lowest_run_id:
+        if mv["run_id"] == high_accuracy_run_id:
             current_version = mv["version"]
             logged_model = mv["source"]
             
